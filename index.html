@@ -1,0 +1,958 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swathi | Personal Portfolio</title>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f8f5ff;
+    color: #29213b;
+}
+
+/* NAVIGATION */
+header {
+    background: white;
+    box-shadow: 0 3px 20px rgba(0,0,0,0.06);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: auto;
+    padding: 18px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: 800;
+    color: #6c43bd;
+}
+
+.logo span {
+    color: #f49ac2;
+}
+
+.menu {
+    display: flex;
+    gap: 30px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #514761;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.menu a:hover,
+.menu a.active {
+    color: #8b5bd3;
+}
+
+.menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* GENERAL */
+.page {
+    display: none;
+    min-height: 75vh;
+    animation: fadeIn 0.7s ease;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(15px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+span.highlight {
+    color: #9365d5;
+}
+
+.tag {
+    color: #9365d5;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.btn {
+    display: inline-block;
+    background: #8755cf;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px;
+    justify-content: center;
+}
+
+.btn:hover {
+    background: #6034a5;
+    transform: translateY(-4px);
+}
+
+.secondary {
+    background: white;
+    color: #8755cf;
+    border: 1px solid #8755cf;
+}
+
+/* HOME */
+.hero {
+    max-width: 1200px;
+    margin: auto;
+    padding: 90px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    min-height: 530px;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.hero-content h2 {
+    font-size: 23px;
+    color: #8064a6;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    color: #71677e;
+    line-height: 1.9;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.hero-art {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-circle {
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    background: linear-gradient(135deg,#c6a5f3,#f3b6d2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 65px;
+    font-weight: 800;
+    color: white;
+    box-shadow: 0 15px 40px #d5b8f2;
+    animation: float 4s ease-in-out infinite;
+}
+.profile-circle {
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 7px solid white;
+    box-shadow: 0 15px 40px #d5b8f2;
+    animation: float 4s ease-in-out infinite;
+}
+
+.profile-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+.profile-circle:hover img {
+    transform: scale(1.1);
+}
+
+@keyframes float {
+    0%,100% {transform: translateY(0);}
+    50% {transform: translateY(-15px);}
+}
+
+.floating-tag {
+    position: absolute;
+    background: white;
+    padding: 12px 18px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px #ddd0ee;
+    font-size: 13px;
+    animation: float 3s infinite ease-in-out;
+}
+
+.tag-one {top: 15px; left: -10px;}
+.tag-two {bottom: 40px; right: -35px;}
+.tag-three {bottom: -5px; left: 15px;}
+
+/* HOME CARDS */
+.welcome-section {
+    padding: 60px 6%;
+    text-align: center;
+    background: white;
+}
+
+.welcome-section h2 {
+    font-size: 30px;
+    margin-bottom: 35px;
+}
+
+.card-container {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+}
+
+.feature-card {
+    background: #faf7ff;
+    padding: 35px 25px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #29213b;
+    transition: 0.4s;
+    border: 1px solid #eee4fa;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px #e2d3f5;
+}
+
+.card-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    margin-bottom: 10px;
+    color: #8755cf;
+}
+
+.feature-card p {
+    font-size: 14px;
+    color: #71677e;
+    line-height: 1.7;
+}
+
+/* INNER PAGES */
+.page-container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 60px 6%;
+}
+
+.page-heading {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.page-heading h1 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.page-heading p {
+    color: #786d86;
+}
+
+.resume-section,
+.bio-card,
+.contact-card {
+    background: white;
+    padding: 30px;
+    margin-bottom: 25px;
+    border-radius: 18px;
+    box-shadow: 0 5px 25px rgba(100,65,140,0.07);
+    transition: 0.3s;
+}
+
+.resume-section:hover,
+.bio-card:hover,
+.contact-card:hover {
+    transform: translateY(-4px);
+}
+
+.resume-section h2,
+.bio-card h2,
+.contact-card h2 {
+    color: #8755cf;
+    margin-bottom: 20px;
+}
+
+.resume-section p {
+    color: #71677e;
+    line-height: 1.9;
+}
+
+.timeline-item,
+.project-item {
+    border-left: 3px solid #b58be9;
+    padding: 5px 0 5px 20px;
+    margin: 20px 0;
+}
+
+.timeline-item h3,
+.project-item h3 {
+    margin-bottom: 7px;
+}
+
+.timeline-item span {
+    display: inline-block;
+    background: #f0e7fc;
+    color: #8755cf;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+.skill {
+    margin-bottom: 18px;
+}
+
+.skill p {
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.skill-bar {
+    height: 10px;
+    background: #eee7f6;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.skill-bar div {
+    height: 100%;
+    background: linear-gradient(90deg,#9e70e0,#e8a4cb);
+    border-radius: 20px;
+    animation: grow 2s ease;
+}
+
+@keyframes grow {
+    from {width: 0;}
+}
+
+.resume-section ul {
+    padding-left: 25px;
+    line-height: 2;
+    color: #71677e;
+}
+
+/* BIODATA */
+.bio-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.bio-table td {
+    padding: 14px 10px;
+    border-bottom: 1px solid #eee8f4;
+}
+
+.bio-table td:first-child {
+    font-weight: 600;
+    color: #8755cf;
+    width: 38%;
+}
+
+/* CONTACT */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.contact-item {
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.contact-item strong {
+    color: #8755cf;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #e0d5ec;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #8755cf;
+}
+
+.contact-form textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    background: #302342;
+    color: white;
+    padding: 25px;
+    font-size: 14px;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px) {
+    .menu-btn {
+        display: block;
+    }
+
+    .menu {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        padding: 20px 6%;
+        gap: 18px;
+        box-shadow: 0 10px 15px #ddd;
+    }
+
+    .menu.show {
+        display: flex;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 60px;
+    }
+
+    .hero-content h1 {
+        font-size: 36px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .card-container {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-art {
+        margin: 20px auto;
+        transform: scale(0.9);
+    }
+
+    .bio-table td {
+        padding: 10px 5px;
+        font-size: 13px;
+    }
+}
+
+@media print {
+    header, footer, .btn, .menu-btn {
+        display: none !important;
+    }
+
+    .page {
+        display: none !important;
+    }
+
+    #resume {
+        display: block !important;
+    }
+
+    body {
+        background: white;
+    }
+
+    .resume-section {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        break-inside: avoid;
+    }
+}
+.social-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 30px 15px 45px;
+    background: white;
+}
+
+.social-links a {
+    text-decoration: none;
+    color: #8755cf;
+    border: 1px solid #8755cf;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.social-links a:hover {
+    background: #8755cf;
+    color: white;
+    transform: translateY(-5px);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav class="navbar">
+    <h2 class="logo">Swathi<span>.</span></h2>
+
+    <button class="menu-btn" aria-label="Toggle navigation">☰</button>
+
+    <div class="menu">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#resume" class="nav-link">Resume</a>
+        <a href="#biodata" class="nav-link">Bio-data</a>
+        <a href="#contact" class="nav-link">Contact</a>
+    </div>
+</nav>
+</header>
+
+<!-- HOME PAGE -->
+<section id="home" class="page active">
+
+    <div class="hero">
+        <div class="hero-content">
+            <p class="tag">WELCOME TO MY WEBSITE</p>
+
+            <h1>Hello, I'm <span class="highlight">Swathi</span></h1>
+
+            <h2>Computer Science Engineering Student</h2>
+
+            <p>
+                I am a passionate CSE student interested in technology,
+                programming and learning new skills. I enjoy exploring
+                creative ideas and developing innovative projects.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#resume" class="btn page-link">View Resume</a>
+                <a href="#biodata" class="btn secondary page-link">My Bio-data</a>
+            </div>
+        </div>
+     
+
+        <div class="hero-art">
+            <div class="profile-circle">
+    <img src="profile.jpg" alt="Swathi's Profile Photo">
+            </div>
+            <div class="floating-tag tag-one">💻 Coding</div>
+            <div class="floating-tag tag-two">✨ Creativity</div>
+            <div class="floating-tag tag-three">🚀 Learning</div>
+        </div>
+    </div>
+
+    <div class="welcome-section">
+        <h2>Explore My Website</h2>
+
+        <div class="card-container">
+
+            <a href="#resume" class="feature-card page-link">
+                <div class="card-icon">📄</div>
+                <h3>My Resume</h3>
+                <p>Explore my educational qualifications, skills and projects.</p>
+            </a>
+
+            <a href="#biodata" class="feature-card page-link">
+                <div class="card-icon">👩‍🎓</div>
+                <h3>Bio-data</h3>
+                <p>Know more about my personal details and interests.</p>
+            </a>
+
+            <a href="#contact" class="feature-card page-link">
+                <div class="card-icon">📩</div>
+                <h3>Contact</h3>
+                <p>Get in touch with me through my contact details.</p>
+            </a>
+
+        </div>
+    </div>
+    <div class="social-links">
+    <a href="https://github.com/B-Swathi-2006"
+       target="_blank" rel="noopener noreferrer">
+       <span>GitHub ↗</span>
+    </a>
+
+    <a href="https://www.linkedin.com/in/swathi-b-2460a232a/"
+       target="_blank" rel="noopener noreferrer">
+       <span>LinkedIn ↗</span>
+    </a>
+</div>
+</section>
+
+<!-- RESUME PAGE -->
+<section id="resume" class="page">
+
+    <main class="page-container">
+
+        <div class="page-heading">
+            <p class="tag">MY PROFESSIONAL PROFILE</p>
+            <h1>My <span class="highlight">Resume</span></h1>
+            <p>A summary of my education, technical skills and projects.</p>
+            <br>
+        </div>
+
+        <div class="resume-section">
+            <h2>🎯 Career Objective</h2>
+            <p>
+                To obtain an opportunity where I can apply my technical
+                knowledge, improve my programming skills and contribute
+                to the development of innovative solutions.
+            </p>
+        </div>
+
+        <div class="resume-section">
+            <h2>🎓 Educational Qualification</h2>
+
+            <div class="timeline-item">
+                <h3>Bachelor of Engineering – Computer Science</h3>
+                <p>Vivekananda College of Engineering and Technology, Puttur</p>
+                <p>Visvesvaraya Technological University (VTU)</p>
+                <span>Currently Pursuing</span>
+            </div>
+
+            <div class="timeline-item">
+                <h3>Pre-University Course (PUC)</h3>
+                <p>Vivekananda Pre-University College</p>
+                <p>Passed Year:2024</p>
+                <span>Percentage: 93.83%</span>
+            </div>
+
+            <div class="timeline-item">
+                <h3>SSLC</h3>
+                <p>Vivekananda Kannada Medium School</p>
+                <p>Passed Year:2022</p>
+                <span>Percentage: 96%</span>
+            </div>
+        </div>
+
+        <div class="resume-section">
+            <h2>💻 Technical Skills</h2>
+
+            <div class="skill">
+                <p>Python</p>
+                <div class="skill-bar"><div style="width:75%"></div></div>
+            </div>
+
+           
+            <div class="skill">
+                <p>C / C++</p>
+                <div class="skill-bar"><div style="width:65%"></div></div>
+            </div>
+
+            <div class="skill">
+                <p>HTML</p>
+                <div class="skill-bar"><div style="width:70%"></div></div>
+            </div>
+
+           
+        </div>
+
+        <div class="resume-section">
+            <h2>🚀 Projects</h2>
+
+            <div class="project-item">
+                <h3>Fake Job Posting Detection</h3>
+                <p>
+                    A machine learning-based application designed to identify
+                    potentially fraudulent job postings using NLP and ML.
+                </p>
+            </div>
+
+            <div class="project-item">
+                <h3>FAQ Chatbot</h3>
+                <p>
+                    A Python-based chatbot that answers frequently asked
+                    questions using natural language processing techniques.
+                </p>
+            </div>
+
+            <div class="project-item">
+                <h3>Online Voting System</h3>
+                <p>
+                    A web-based application that allows users to log in
+                    and cast their votes.
+                </p>
+            </div>
+        </div>
+
+        <div class="resume-section">
+            <h2>⭐ Strengths</h2>
+            <ul>
+                <li>Problem-solving ability</li>
+                <li>Quick learning</li>
+                <li>Positive attitude</li>
+                <li>Focus and dedication</li>
+                <li>Willingness to learn new technologies</li>
+            </ul>
+        </div>
+         <div class="resume-section">
+            <h2>🎙️ Languages</h2>
+            <ul>
+                <li>English</li>
+                <li>Kannada</li>
+            </ul>
+        </div>
+      <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+    </main>
+</section>
+
+<!-- BIO-DATA PAGE -->
+<section id="biodata" class="page">
+
+    <main class="page-container">
+
+        <div class="page-heading">
+            <p class="tag">A LITTLE ABOUT ME</p>
+            <h1>My <span class="highlight">Bio-data</span></h1>
+            <p>Personal information and interests.</p>
+        </div>
+
+        <div class="bio-card">
+            <h2>👩‍🎓 Personal Details</h2>
+
+            <table class="bio-table">
+                <tr><td>Full Name</td><td>B Swathi</td></tr>
+                <tr><td>Date of Birth</td><td>25th September 2006</td></tr>
+                <tr><td>Parents name </td><td>B sathish poojary , Suma B</td></tr>
+                <tr><td>Address</td><td>Bannur,Puttur</td></tr>
+                <tr><td>Phone Number</td><td>7338109905</td></tr>
+                <tr><td>email id</td><td>swathib9905@gmail.com</td></tr>
+                <tr><td>Nationality</td><td>Indian</td></tr>
+                <tr><td>Languages Known</td><td>English, Kannada</td></tr>
+            </table>
+        </div>
+
+        <div class="bio-card">
+            <h2>🎨 Hobbies and Interests</h2>
+            <ul>
+                <li>Drawing and sketching</li>
+                <li>Listening to music</li>
+                <li>Learning new technologies</li>
+                <li>Exploring creative ideas</li>
+            </ul>
+        </div>
+
+        <div class="bio-card">
+            <h2>🌟 Personal Strengths</h2>
+            <ul>
+                <li>Self-motivated</li>
+                <li>Dedicated and focused</li>
+                <li>Creative thinking</li>
+            </ul>
+        </div>
+
+    </main>
+</section>
+
+<!-- CONTACT PAGE -->
+<section id="contact" class="page">
+
+    <main class="page-container">
+
+        <div class="page-heading">
+            <p class="tag">LET'S CONNECT</p>
+            <h1>Contact <span class="highlight">Me</span></h1>
+            <p>Feel free to get in touch with me.</p>
+        </div>
+
+        <div class="contact-grid">
+
+            <div class="contact-card">
+                <h2>📬 Contact Information</h2>
+
+                <div class="contact-item">
+                    <strong>Name</strong>
+                    <p>B Swathi</p>
+                </div>
+
+                <div class="contact-item">
+                    <strong>Email</strong>
+                    <p>swathib9905@gmail.com</p>
+                </div>
+
+                <div class="contact-item">
+                    <strong>Phone</strong>
+                    <p>7338109905</p>
+                </div>
+
+                <div class="contact-item">
+                    <strong>College</strong>
+                    <p>VCET, Puttur</p>
+                </div>
+            </div>
+
+            <div class="contact-card">
+                <h2>✉️ Send a Message</h2>
+
+                <form class="contact-form" id="contactForm">
+                    <input type="text" id="name" placeholder="Your Name" required>
+                    <input type="email" id="email" placeholder="Your Email" required>
+                    <textarea id="message" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+
+                <p id="formMessage"></p>
+            </div>
+
+        </div>
+    </main>
+</section>
+
+<footer>
+    <p>© 2026 Swathi | Personal Portfolio Website</p>
+    <p>Designed with HTML, CSS, JavaScript and jQuery 💜</p>
+</footer>
+
+<script>
+
+// NAVIGATION BETWEEN PAGES
+function showPage(pageId) {
+
+    $(".page").removeClass("active");
+    $("#" + pageId).addClass("active");
+
+    $(".nav-link").removeClass("active");
+    $('.nav-link[href="#' + pageId + '"]').addClass("active");
+
+    $(".menu").removeClass("show");
+
+    window.scrollTo(0, 0);
+}
+
+// NAVIGATION LINK CLICK
+$(".nav-link, .page-link").on("click", function(event) {
+
+    event.preventDefault();
+
+    const pageId = $(this).attr("href").substring(1);
+
+    if ($("#" + pageId).length) {
+        showPage(pageId);
+        history.pushState(null, "", "#" + pageId);
+    }
+});
+
+// MOBILE MENU
+$(".menu-btn").click(function() {
+    $(".menu").toggleClass("show");
+});
+
+// OPEN PAGE USING URL HASH
+$(document).ready(function() {
+
+    let pageId = window.location.hash.substring(1);
+
+    if (pageId && $("#" + pageId).length) {
+        showPage(pageId);
+    } else {
+        showPage("home");
+    }
+
+});
+
+// BROWSER BACK AND FORWARD
+window.addEventListener("popstate", function() {
+    let pageId = window.location.hash.substring(1) || "home";
+
+    if ($("#" + pageId).length) {
+        showPage(pageId);
+    }
+});
+
+// CONTACT FORM VALIDATION
+$("#contactForm").submit(function(event) {
+
+    event.preventDefault();
+
+    const name = $("#name").val().trim();
+    const email = $("#email").val().trim();
+    const message = $("#message").val().trim();
+
+    if (name === "" || email === "" || message === "") {
+        $("#formMessage").text("Please fill all the fields.");
+        return;
+    }
+
+    $("#formMessage")
+        .css("color", "green")
+        .text("Thank you, " + name + "! Your message has been validated.");
+
+    $("#contactForm")[0].reset();
+
+});
+
+</script>
+
+</body>
+</html>
